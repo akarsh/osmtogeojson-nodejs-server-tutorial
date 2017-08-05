@@ -129,7 +129,7 @@ You can test the GeoJSON file by accessing this url,
 This project uses Open Source components. You can find the source code of their open source projects along with license information below. We acknowledge and are grateful to these developers for their contributions to open source.
 * Project: [osmtogeojson](https://github.com/tyrasd/osmtogeojson)
 
-  Author: [Martin Raifer](https://github.com/tyrasd)
+  Author: [6+ contributors](https://github.com/tyrasd/osmtogeojson/graphs/contributors)
 
   License: [MIT](https://github.com/tyrasd/osmtogeojson/blob/gh-pages/LICENSE)
 
