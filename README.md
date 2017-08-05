@@ -2,8 +2,14 @@
 Tutorial for osmtogeojson-nodejs-server.
 
 ## Table of Contents
+- [Introduction](#introduction)
 - [Tutorial](#tutorial)
 - [Credits](#credits)
+
+### Introduction
+In this tutorial you will be able to learn how to download an osm file from the OpenStreetMap-website via api using wget and curl.
+
+I created this tutorial because i faced some difficulties in implemntation of osmtogeojson nodejs library. As, the osm file has to be parsed using xmldom parser and then again using JSON.stringify to save the parsed file as GeoJSON.
 
 ### Tutorial
 The library files are declared
@@ -22,14 +28,14 @@ var serveStatic = require('serve-static');   // serve-static library
 You need to provide the boundingbox coordinates of the osm file to be downloaded from the osm api
 ```
 /* file url - contains coordinates of the bounding box of osm file to be download */
-var new_file_url = 'http://api.openstreetmap.org/api/0.6/map?bbox=11.54,48.14,11.543,48.145';
+var new_file_url = 'http://api.OpenStreetMap.org/api/0.6/map?bbox=11.54,48.14,11.543,48.145';
 ```
-If you are using local-server of [openstreetmap-website](https://github.com/openstreetmap/openstreetmap-website). Then the new_file_url will be
+If you are using local-server of [OpenStreetMap-website](https://github.com/OpenStreetMap/OpenStreetMap-website). Then the new_file_url will be
 ```
 var new_file_url = 'http://localhost:3000/api/0.6/map?bbox=11.54,48.14,11.543,48.145';
 ```
 
-You can initially test your nodejs-sever for osmtogeojson by downloading the osm and geojson file locally.
+You can initially test your nodejs-sever for osmtogeojson by downloading the osm and GeoJSON file locally.
 ```
 /* Converting and saving files locally */
 // fs.readFile(path + "//testmap.osm", function(err, data)
@@ -102,13 +108,13 @@ download_file_curl(new_file_url);
 
 This creates a local-server that is accessible at port ```3030```
 ```
-/* A local sever folder is accessible via url: http://localhost:3030/. Where the osm and geojson files are downloaded */
+/* A local sever folder is accessible via url: http://localhost:3030/. Where the osm and GeoJSON files are downloaded */
 connect().use(serveStatic(__dirname)).listen(3030, function(){
     console.log('Server running on 3030...');
 });
 ```
 
-You can test the geojson file by accessing this url,
+You can test the GeoJSON file by accessing this url,
 ```
 /* url to download the geojson file */
 // http://localhost:3030/map.geojson
