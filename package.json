@@ -1,0 +1,27 @@
+{
+  "name": "Converting osm file from current directory into geojson file",
+  "version": "1.0.0",
+  "description": "This project is part of PJ Project DCAITI SoSe 17",
+  "author": "Akarsh Seggemu",
+  "license": "",
+  "readme": "",
+  "repository": {
+    "type": "git",
+    "url": ""
+  },
+  "keywords": [
+    "osm",
+    "geojson"
+  ],
+  "dependencies": {
+    "connect": "^3.6.2",
+    "serve-static": "^1.12.3",
+    "osmtogeojson": "ˆ3.0.0"
+  },
+  "engines": {
+    "node": "v7.10.0"
+  },
+  "scripts": {
+    "start": "node app.js"
+  }
+}

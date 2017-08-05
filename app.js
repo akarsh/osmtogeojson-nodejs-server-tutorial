@@ -1,36 +1,18 @@
-# osmtogeojson-nodejs-server-tutorial
-Tutorial for osmtogeojson-nodejs-server.
-
-## Table of Contents
-- [Tutorial](#tutorial)
-- [Credits](#credits)
-
-### Tutorial
-The library files are declared
-```
 var osmtogeojson = require('osmtogeojson');  // osmtogeojson library
 var DOMParser = require('xmldom').DOMParser; // xmldom parser library
-var path = process.cwd();                    // accessing the current directory
+var path = process.cwd();                    // accessing the current directory   
 var fs = require('fs');                      // fs library
 var url = require('url');                    // url library
 var exec = require('child_process').exec;
 var spawn = require('child_process').spawn;
 var connect = require('connect');            // connect library
 var serveStatic = require('serve-static');   // serve-static library
-```
 
-You need to provide the boundingbox coordinates of the osm file to be downloaded from the osm api
-```
 /* file url - contains coordinates of the bounding box of osm file to be download */
 var new_file_url = 'http://api.openstreetmap.org/api/0.6/map?bbox=11.54,48.14,11.543,48.145';
-```
-If you are using local-server of [openstreetmap-website](https://github.com/openstreetmap/openstreetmap-website). Then the new_file_url will be
-```
+// if you are using local-server for openstreetmap website
 var new_file_url = 'http://localhost:3000/api/0.6/map?bbox=11.54,48.14,11.543,48.145';
-```
 
-You can initially test your nodejs-sever for osmtogeojson by downloading the osm and geojson file locally.
-```
 /* Converting and saving files locally */
 // fs.readFile(path + "//testmap.osm", function(err, data)
 // {
@@ -47,10 +29,7 @@ You can initially test your nodejs-sever for osmtogeojson by downloading the osm
 //        		 	console.log('file is created');
 // 		});
 // });
-```
 
-Downloading the osm file via wget
-```
 /* download osm file using wget */
 var download_file_wget = function(file_url) {
     // compose the wget command
@@ -67,10 +46,7 @@ var download_file_wget = function(file_url) {
 
 /* calling the  download_file_wget function*/
 download_file_wget(new_file_url);
-```
 
-Downloading the osm file via curl
-```
 /* download osm file using curl */
 var download_file_curl = function(file_url) {
     // create an instance of writable stream
@@ -78,10 +54,10 @@ var download_file_curl = function(file_url) {
     // execute curl using child_process' spawn function
     var curl = spawn('curl', [file_url]);
     // add a 'data' event listener for the spawn instance
-    curl.stdout.on('data', function(data) {
+    curl.stdout.on('data', function(data) { 
       var docNew = new DOMParser().parseFromString(data.toString());
       var newdocNew = osmtogeojson(docNew);
-      file.write(JSON.stringify(newdocNew));
+      file.write(JSON.stringify(newdocNew)); 
     });
     // add an 'end' event listener to close the writeable stream
     curl.stdout.on('end', function(data) {
@@ -98,36 +74,15 @@ var download_file_curl = function(file_url) {
 
 /* calling the  download_file_curl function*/
 download_file_curl(new_file_url);
-```
 
-This creates a local-server that is accessible at port ```3030```
-```
 /* A local sever folder is accessible via url: http://localhost:3030/. Where the osm and geojson files are downloaded */
 connect().use(serveStatic(__dirname)).listen(3030, function(){
     console.log('Server running on 3030...');
 });
-```
 
-You can test the geojson file by accessing this url,
-```
 /* url to download the geojson file */
 // http://localhost:3030/map.geojson
 
 /* remote device via chrome browser on the sever and android */
 // https://developers.google.com/web/tools/chrome-devtools/remote-debugging/local-server
 // https://developers.google.com/web/tools/chrome-devtools/remote-debugging/
-```
-
-### Credits
-This project uses Open Source components. You can find the source code of their open source projects along with license information below. We acknowledge and are grateful to these developers for their contributions to open source.
-* Project: [osmtogeojson](https://github.com/tyrasd/osmtogeojson)
-
-  Author: [Martin Raifer](https://github.com/tyrasd)
-
-  License: [MIT](https://github.com/tyrasd/osmtogeojson/blob/gh-pages/LICENSE)
-
-* Project: [Connect](https://github.com/tyrasd/osmtogeojson)
-
-  Author: [100+ contributors](https://github.com/senchalabs/connect/graphs/contributors)
-
-  License: [MIT](https://github.com/senchalabs/connect/blob/master/LICENSE)
