@@ -15,7 +15,7 @@
   ],
   "dependencies": {
     "connect": "^3.6.2",
-    "serve-static": "^1.12.3",
+    "serve-static": "^1.16.0",
     "osmtogeojson": "ˆ3.0.0"
   },
   "engines": {
